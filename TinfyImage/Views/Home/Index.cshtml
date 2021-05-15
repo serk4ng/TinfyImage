@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.test = TempData["for"];
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("OptimizeAsync3", "Home", FormMethod.Post, new { id = "imag", @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            <input type="file" accept="image/*" id="imag" style="float:left;" name="imag" multiple /><p>Max. 75mb</p>
+            <hr />
+            <button class="btn btn-success btn-sm" type="submit">Kaydet</button>
+        }
+    </div>
+    @if (TempData["for"] != null)
+    {
+        foreach (var item in ViewBag.test)
+        {
+            <a href="Images/@item" download>İndir(@item)</a>
+        }
+    }
+    @if (TempData["Error"] != null)
+    {
+        <h1 style="color:#ff0000;">@TempData["Error"]</h1>
+    }
+
+</body>
+</html>
